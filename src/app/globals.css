@@ -133,3 +133,7 @@
     border-radius: 10px;
     overflow: auto;
 }
+
+.blogtexteditor {
+    word-break: break-all;
+}
