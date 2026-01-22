@@ -1,33 +1,15 @@
-// import "./globals.css";
-// import NavbarWrapper from "@/components/common/NavbarWrapper";
-// import logo from "@/app/assets/logo.svg";
-
-// export const metadata = {
-//   title: "Frantic Infotech Blogs",
-//   description: "Latest technology blogs and development insights by Frantic Infotech.",
-//   icons: {
-//     icon: logo.src, // favicon
-//   },
-// };
-
-// export default function RootLayout({ children }) {
-//   return (
-//     <html lang="en">
-//       <body suppressHydrationWarning>
-//         <NavbarWrapper />
-//         {children}
-//       </body>
-//     </html>
-//   );
-// }
-
-
 import "./globals.css";
 import NavbarWrapper from "@/components/common/NavbarWrapper";
 
 export const metadata = {
   title: "Frantic Infotech Blogs",
   description: "Latest technology blogs and development insights by Frantic Infotech.",
+
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -43,7 +25,7 @@ export default function RootLayout({ children }) {
         url: baseUrl,
         logo: {
           "@type": "ImageObject",
-          url: `${baseUrl}/logo.png`, // put logo.png in public folder
+          url: `${baseUrl}/favicon.svg`,
         },
       },
       {
