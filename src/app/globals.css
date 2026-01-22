@@ -126,9 +126,14 @@
 }
 
 
-.prose-invert.prose-lg pre {
+.prose.prose-invert pre {
     background: #F9F9F9;
     color: black;
     padding: 20px;
     border-radius: 10px;
+    overflow: auto;
+}
+
+.blogtexteditor {
+    overflow: auto;
 }
