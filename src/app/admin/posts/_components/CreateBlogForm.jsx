@@ -5,21 +5,18 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import dynamic from "next/dynamic";
 
-
 import { PostService } from "@/services/post.service";
 import { CategoryService } from "@/services/category.service";
-
 
 const TextEditor = dynamic(() => import("../_components/TextEditor"), {
     ssr: false,
     loading: () => <div className="p-4 text-sm text-gray-500">Loading editor...</div>,
 });
 
-const BASE_URL = process.env.NEXT_PUBLIC_IMAGE_URL;
+
 
 const formcontrol =
     "w-full p-2 border bg-white border-blue-gray-400 outline-0 rounded text-sm focus:outline-none";
-
 
 export default function BlogForm({ id = null }) {
     const router = useRouter();
@@ -27,31 +24,34 @@ export default function BlogForm({ id = null }) {
     const [loading, setLoading] = useState(false);
     const [fetching, setFetching] = useState(!!id);
 
-    // ✅ category list
     const [categories, setCategories] = useState([]);
 
     const [content, setContent] = useState("");
     const [thumbnail, setThumbnail] = useState(null);
     const [banner, setBanner] = useState(null);
     const [title, setTitle] = useState("");
-
-    // ✅ category selected
     const [category, setCategory] = useState("");
 
-    // ✅ SEO fields
     const [metaDescription, setMetaDescription] = useState("");
     const [keywords, setKeywords] = useState("");
 
-    // ✅ old preview
     const [oldBanner, setOldBanner] = useState("");
     const [oldThumbnail, setOldThumbnail] = useState("");
 
-    // ✅ load categories
+    /* ---------------- LOAD CATEGORIES ---------------- */
     useEffect(() => {
         const loadCategories = async () => {
             try {
                 const res = await CategoryService.getAll();
-                setCategories(res?.data || res || []);
+
+                const cats =
+                    res?.data?.data ||
+                    res?.data?.categories ||
+                    res?.data ||
+                    res ||
+                    [];
+
+                setCategories(Array.isArray(cats) ? cats : []);
             } catch (err) {
                 console.log(err);
                 toast.error("Failed to load categories");
@@ -61,23 +61,27 @@ export default function BlogForm({ id = null }) {
         loadCategories();
     }, []);
 
-    // ✅ load blog for edit
+    /* ---------------- LOAD BLOG (EDIT) ---------------- */
     useEffect(() => {
-        const loadBlog = async () => {
-            if (!id) return;
+        if (!id) return;
 
+        const loadBlog = async () => {
             try {
                 setFetching(true);
 
                 const res = await PostService.getById(id);
-                const blg = res?.data?.[0];
+
+                const blg = res?.data?.[0] || res?.data || res;
+
+                if (!blg) return;
 
                 setTitle(blg?.title || "");
                 setContent(blg?.content || "");
                 setMetaDescription(blg?.metaDescription || "");
-                setKeywords(Array.isArray(blg?.keywords) ? blg.keywords.join(", ") : "");
+                setKeywords(
+                    Array.isArray(blg?.keywords) ? blg.keywords.join(", ") : ""
+                );
 
-                // ✅ set category
                 setCategory(blg?.category?._id || blg?.category || "");
 
                 setOldBanner(blg?.banner || "");
@@ -93,6 +97,7 @@ export default function BlogForm({ id = null }) {
         loadBlog();
     }, [id]);
 
+    /* ---------------- SUBMIT ---------------- */
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -106,11 +111,7 @@ export default function BlogForm({ id = null }) {
             const fd = new FormData();
             fd.append("title", title);
             fd.append("content", content);
-
-            // ✅ send category
             fd.append("category", category);
-
-            // ✅ SEO
             fd.append("metaDescription", metaDescription);
 
             const keywordArr = keywords
@@ -125,16 +126,22 @@ export default function BlogForm({ id = null }) {
 
             if (id) {
                 const res = await PostService.update(id, fd);
+
                 if (res?.success == 1) {
                     toast.success("Blog updated successfully");
                     router.push("/admin/posts");
-                } else toast.error(res?.message || "Update failed");
+                } else {
+                    toast.error(res?.message || "Update failed");
+                }
             } else {
                 const res = await PostService.create(fd);
+
                 if (res?.success == 1) {
                     toast.success("Blog created successfully");
                     router.push("/admin/posts");
-                } else toast.error(res?.message || "Create failed");
+                } else {
+                    toast.error(res?.message || "Create failed");
+                }
             }
         } catch (err) {
             console.log(err);
@@ -146,10 +153,12 @@ export default function BlogForm({ id = null }) {
 
     if (fetching) return <div className="p-6">Loading...</div>;
 
+    /* ---------------- UI ---------------- */
     return (
         <section className="py-10">
             <div className="max-w-5xl mx-auto px-4">
                 <div className="bg-white rounded-2xl shadow-md border border-gray-100 p-6 sm:p-8">
+
                     {/* Header */}
                     <div className="flex items-center justify-between gap-4 mb-8">
                         <div>
@@ -170,9 +179,10 @@ export default function BlogForm({ id = null }) {
                         </button>
                     </div>
 
-                    {/* Form */}
+                    {/* FORM */}
                     <form onSubmit={handleSubmit}>
                         <div className="grid grid-cols-12 gap-6">
+
                             {/* Title */}
                             <div className="col-span-12">
                                 <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -188,7 +198,7 @@ export default function BlogForm({ id = null }) {
                                 />
                             </div>
 
-                            {/* ✅ Category */}
+                            {/* Category */}
                             <div className="col-span-12">
                                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                                     Select Category
@@ -201,14 +211,14 @@ export default function BlogForm({ id = null }) {
                                 >
                                     <option value="">-- Select Category --</option>
                                     {categories.map((cat) => (
-                                        <option key={cat._id} value={cat._id}>
-                                            {cat.name}
+                                        <option key={cat?._id} value={cat?._id}>
+                                            {cat?.name}
                                         </option>
                                     ))}
                                 </select>
                             </div>
 
-                            {/* Meta Description */}
+                            {/* Meta */}
                             <div className="col-span-12">
                                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                                     Meta Description
@@ -252,7 +262,7 @@ export default function BlogForm({ id = null }) {
 
                                 {id && oldBanner && (
                                     <img
-                                        src={BASE_URL + oldBanner}
+                                        src={`${oldBanner}`}
                                         alt="banner"
                                         className="mt-3 h-20 rounded-xl object-cover border"
                                     />
@@ -274,7 +284,7 @@ export default function BlogForm({ id = null }) {
 
                                 {id && oldThumbnail && (
                                     <img
-                                        src={BASE_URL + oldThumbnail}
+                                        src={`${oldThumbnail}`}
                                         alt="thumbnail"
                                         className="mt-3 h-20 rounded-xl object-cover border"
                                     />
@@ -309,6 +319,7 @@ export default function BlogForm({ id = null }) {
                                     {loading ? "Saving..." : "Save Blog"}
                                 </button>
                             </div>
+
                         </div>
                     </form>
                 </div>

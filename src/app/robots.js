@@ -4,6 +4,6 @@ export default function robots() {
             userAgent: "*",
             allow: "/",
         },
-        sitemap: "https://frantic-blog.vercel.app/sitemap.xml",
+        sitemap: "https://frantic.in/sitemap.xml",
     };
 }

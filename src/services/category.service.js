@@ -1,31 +1,29 @@
 import api from "@/lib/api";
 
 export const CategoryService = {
+
     // ✅ GET ALL
     getAll: async () => {
-        const res = await api.get("/category");
+        const res = await api.get("/api/categories");
         return res.data;
     },
 
-    // ✅ CREATE (with optional icon upload)
+    // ✅ CREATE (multipart/form-data)
     create: async (formData) => {
-        const res = await api.post("/category", formData, {
-            headers: { "Content-Type": "multipart/form-data" },
-        });
+        const res = await api.post("/api/categories", formData);
         return res.data;
     },
 
-    // ✅ UPDATE (with optional icon upload)
+    // ✅ UPDATE
     update: async (id, formData) => {
-        const res = await api.put(`/category/${id}`, formData, {
-            headers: { "Content-Type": "multipart/form-data" },
-        });
+        const res = await api.put(`/api/categories/${id}`, formData);
         return res.data;
     },
 
     // ✅ DELETE
     remove: async (id) => {
-        const res = await api.delete(`/category/${id}`);
+        const res = await api.delete(`/api/categories/${id}`);
         return res.data;
     },
+
 };

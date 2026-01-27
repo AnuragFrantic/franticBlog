@@ -13,35 +13,49 @@ export default function LoginPage() {
         password: "",
     });
 
-    const [showPassword, setShowPassword] = useState(false); // ✅ NEW
+    const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
     const handleChange = (e) => {
-        setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+        const { name, value } = e.target;
+
+        setForm((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
 
+        if (!form.email || !form.password) {
+            setError("Email and password are required");
+            return;
+        }
+
         try {
             setLoading(true);
 
             const res = await AuthService.login(form);
 
-            if (!res?.success) {
+            if (!res?.success || !res?.token) {
                 setError(res?.message || "Login failed");
                 return;
             }
 
-            // ✅ Save JWT token
+            // Save token
             setToken(res.token);
 
-            // ✅ Redirect to admin dashboard
-            router.push("/admin");
+            // Redirect
+            router.replace("/admin");
         } catch (err) {
-            setError(err?.response?.data?.message || "Invalid email or password");
+            setError(
+                err?.response?.data?.message ||
+                err?.message ||
+                "Invalid email or password"
+            );
         } finally {
             setLoading(false);
         }
@@ -58,11 +72,11 @@ export default function LoginPage() {
                     Login to access Admin Panel
                 </p>
 
-                {error ? (
+                {error && (
                     <div className="mb-4 text-sm bg-red-50 text-red-700 border border-red-200 px-3 py-2 rounded-lg">
                         {error}
                     </div>
-                ) : null}
+                )}
 
                 <label className="text-sm font-medium">Email</label>
                 <input
@@ -77,7 +91,6 @@ export default function LoginPage() {
 
                 <label className="text-sm font-medium">Password</label>
 
-                {/* ✅ Password with Eye Button */}
                 <div className="relative mt-1 mb-5">
                     <input
                         type={showPassword ? "text" : "password"}
@@ -91,7 +104,7 @@ export default function LoginPage() {
 
                     <button
                         type="button"
-                        onClick={() => setShowPassword((prev) => !prev)}
+                        onClick={() => setShowPassword((p) => !p)}
                         className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-black"
                     >
                         {showPassword ? "🙈" : "👁️"}

@@ -134,6 +134,18 @@
     overflow: auto;
 }
 
+.prose.prose-invert h2,
+.prose.prose-invert strong,
+.prose.prose-invert p em,
+.prose.prose-invert span,
+.prose.prose-invert a,
+.prose.prose-invert u {
+    background: transparent !important;
+    color: white !important;
+    margin-bottom: 10px !important;
+}
+
+
 .blogtexteditor {
     word-break: break-all;
 }

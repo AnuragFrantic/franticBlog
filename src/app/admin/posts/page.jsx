@@ -22,7 +22,7 @@ export default function AdminPostsPage() {
         try {
             setLoading(true);
             const res = await PostService.getAll();
-            setPosts(res?.data || res || []);
+            setPosts(res?.posts || res || []);
         } catch (err) {
             console.log(err);
         } finally {
