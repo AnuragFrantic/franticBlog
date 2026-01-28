@@ -8,7 +8,7 @@ import dynamic from "next/dynamic";
 import { PostService } from "@/services/post.service";
 import { CategoryService } from "@/services/category.service";
 
-const TextEditor = dynamic(() => import("../_components/TextEditor"), {
+const TextEditor = dynamic(() => import("@/components/admin/TextEditor"), {
     ssr: false,
     loading: () => <div className="p-4 text-sm text-gray-500">Loading editor...</div>,
 });

@@ -33,6 +33,13 @@ export default function AdminSidebar() {
                 <Link href="/admin/categories" className={linkClass("/admin/categories")}>
                     Categories
                 </Link>
+                <Link href="/admin/policy" className={linkClass("/admin/policy")}>
+                    Policy
+                </Link>
+
+                <Link href="/admin/contact" className={linkClass("/admin/contact")}>
+                    Contact
+                </Link>
 
                 {/* <Link href="/admin/tags" className={linkClass("/admin/tags")}>
                     Tags
