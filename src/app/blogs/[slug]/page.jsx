@@ -11,29 +11,31 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import ShareButtons from "@/components/blog/ShareButton";
+import { getPostBySlug, latestPosts } from "@/controller/post.controller";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL; // http://localhost:8701/api
+
+
 const IMAGE_URL = process.env.NEXT_PUBLIC_IMAGE_URL; // http://localhost:8701/
 
 const stripHtml = (html = "") => html.replace(/<[^>]*>?/gm, "");
 
-async function fetchBlog(slug) {
-    const res = await fetch(`${API_URL}/post?url=${slug}`, {
-        cache: "no-store",
-    });
+// async function fetchBlog(slug) {
+//     const res = await fetch(`${API_URL}/post?url=${slug}`, {
+//         cache: "no-store",
+//     });
 
-    const json = await res.json();
-    return json?.data?.[0] || null;
-}
+//     const json = await res.json();
+//     return json?.data?.[0] || null;
+// }
 
-async function fetchLatest(slug) {
-    const res = await fetch(`${API_URL}/post/latest?url=${slug}`, {
-        cache: "no-store",
-    });
+// async function latestPosts(slug) {
+//     const res = await fetch(`${API_URL}/post/latest?url=${slug}`, {
+//         cache: "no-store",
+//     });
 
-    const json = await res.json();
-    return json?.data || [];
-}
+//     const json = await res.json();
+//     return json?.data || [];
+// }
 
 /**
  * ✅ Next.js SEO (Best way)
@@ -41,7 +43,7 @@ async function fetchLatest(slug) {
 export async function generateMetadata({ params }) {
     const { slug } = await params;
 
-    const blog = await fetchBlog(slug);
+    const blog = await getPostBySlug(slug);
 
     if (!blog) {
         return {
@@ -83,10 +85,10 @@ export async function generateMetadata({ params }) {
 export default async function BlogDetailPage({ params }) {
     const { slug } = await params;
 
-    const blog = await fetchBlog(slug);
+    const blog = await getPostBySlug(slug);
     if (!blog) return notFound();
 
-    const latest = await fetchLatest(slug);
+    const latest = await latestPosts(slug);
 
     const seoImagePath = blog?.banner || blog?.thumbnail;
     const bannerImage = seoImagePath
@@ -232,12 +234,12 @@ export default async function BlogDetailPage({ params }) {
                                 </CardHeader>
 
                                 <CardContent className="p-5 flex flex-col gap-3">
-                                    <Button
+                                    {/* <Button
                                         asChild
                                         className="rounded-2xl bg-white/10 hover:bg-white/15 border border-white/10"
                                     >
                                         <Link href="/blogs">Browse all blogs</Link>
-                                    </Button>
+                                    </Button> */}
 
                                     <Button
                                         asChild
@@ -249,7 +251,7 @@ export default async function BlogDetailPage({ params }) {
                             </Card>
 
                             {/* Latest Blogs */}
-                            {latest?.length > 0 && (
+                            {latest?.length > 1 && (
                                 <Card className="rounded-3xl bg-white/5 border border-white/10 overflow-hidden">
                                     <CardHeader className="px-6 py-5 border-b border-white/10">
                                         <h3 className="text-sm font-extrabold tracking-wide text-white">
@@ -261,41 +263,45 @@ export default async function BlogDetailPage({ params }) {
                                     </CardHeader>
 
                                     <CardContent className="p-4 space-y-3">
-                                        {latest.slice(0, 5).map((b) => {
-                                            const imgPath = b?.thumbnail || b?.banner;
+                                        {latest
+                                            .filter((b) => b.slug !== slug)   // ✅ remove opened blog
+                                            .slice(0, 5)
+                                            .map((b) => {
 
+                                                const imgPath = b?.thumbnail || b?.banner;
 
-                                            return (
-                                                <Link
-                                                    key={b._id}
-                                                    href={`/blogs/${b.slug}`}
-                                                    className="group flex gap-4 rounded-2xl p-3 hover:bg-white/5 transition border border-transparent hover:border-white/10"
-                                                >
-                                                    <div className="relative w-16 h-16 rounded-2xl overflow-hidden border border-white/10 shrink-0">
-                                                        <Image
-                                                            src={imgPath}
-                                                            alt={b.title || "blog"}
-                                                            fill
-                                                            className="object-cover"
-                                                        />
-                                                    </div>
+                                                return (
+                                                    <Link
+                                                        key={b._id}
+                                                        href={`/blogs/${b.slug}`}
+                                                        className="group flex gap-4 rounded-2xl p-3 hover:bg-white/5 transition border border-transparent hover:border-white/10"
+                                                    >
+                                                        <div className="relative w-16 h-16 rounded-2xl overflow-hidden border border-white/10 shrink-0">
+                                                            <Image
+                                                                src={imgPath}
+                                                                alt={b.title || "blog"}
+                                                                fill
+                                                                className="object-cover"
+                                                            />
+                                                        </div>
 
-                                                    <div className="flex-1">
-                                                        <p className="text-sm font-semibold text-white line-clamp-2 group-hover:text-blue-300 transition">
-                                                            {b.title}
-                                                        </p>
-                                                        <p className="text-xs text-white/50 mt-1">
-                                                            {b?.createdAt
-                                                                ? new Date(b.createdAt).toDateString()
-                                                                : ""}
-                                                        </p>
-                                                    </div>
-                                                </Link>
-                                            );
-                                        })}
+                                                        <div className="flex-1">
+                                                            <p className="text-sm font-semibold text-white line-clamp-2 group-hover:text-blue-300 transition">
+                                                                {b.title}
+                                                            </p>
+                                                            <p className="text-xs text-white/50 mt-1">
+                                                                {b?.createdAt
+                                                                    ? new Date(b.createdAt).toDateString()
+                                                                    : ""}
+                                                            </p>
+                                                        </div>
+                                                    </Link>
+                                                );
+                                            })}
                                     </CardContent>
                                 </Card>
                             )}
+
                         </div>
                     </aside>
                 </div>
