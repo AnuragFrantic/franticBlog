@@ -227,7 +227,7 @@ export default function BlogsPage() {
                                                 href={`/blogs/${blog?.slug}`}
                                                 className="group"
                                             >
-                                                <Card className="rounded-3xl overflow-hidden bg-white/5 border border-white/10 shadow-lg hover:shadow-2xl transition-all duration-300">
+                                                <Card className="h-full flex flex-col rounded-3xl overflow-hidden bg-white/5 border border-white/10 shadow-lg hover:shadow-2xl transition-all duration-300">
                                                     <CardHeader className="p-0">
                                                         {/* ✅ Mobile responsive image */}
                                                         <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] overflow-hidden">
@@ -260,7 +260,7 @@ export default function BlogsPage() {
                                                         </div>
                                                     </CardHeader>
 
-                                                    <CardContent className="p-5">
+                                                    <CardContent className="p-5 flex-1 flex flex-col">
                                                         <p className="text-xs text-white/50">
                                                             {blog?.createdAt
                                                                 ? new Date(blog.createdAt).toDateString()
@@ -271,7 +271,7 @@ export default function BlogsPage() {
                                                             {blog?.title}
                                                         </h3>
 
-                                                        <p className="mt-2 text-sm text-white/65 line-clamp-3">
+                                                        <p className="mt-2 text-sm text-white/65 line-clamp-3 flex-1">
                                                             {desc}
                                                         </p>
 
@@ -290,7 +290,7 @@ export default function BlogsPage() {
                                                         )}
                                                     </CardContent>
 
-                                                    <CardFooter className="p-4 pt-0">
+                                                    <CardFooter className="p-4 pt-0 mt-auto">
                                                         <Button className="rounded-2xl w-full bg-blue-600 hover:bg-blue-700">
                                                             Read More →
                                                         </Button>

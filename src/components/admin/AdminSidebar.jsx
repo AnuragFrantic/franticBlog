@@ -46,7 +46,7 @@ export default function AdminSidebar() {
                 </Link> */}
 
                 <div className="pt-3 border-t">
-                    <Link href="/blogs" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg">
+                    <Link href="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg">
                         View Website
                     </Link>
                 </div>

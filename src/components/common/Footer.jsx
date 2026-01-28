@@ -73,6 +73,14 @@ export default async function Footer() {
                                     </Link>
                                 </li>
                             ))}
+                            <li >
+                                <Link
+                                    href={`/contact`}
+                                    className="text-gray-400 hover:text-white hover:translate-x-1 transition-all duration-200 inline-block"
+                                >
+                                    Contact Us
+                                </Link>
+                            </li>
                         </ul>
                     </div>
 
