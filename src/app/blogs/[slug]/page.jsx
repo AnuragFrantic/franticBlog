@@ -15,7 +15,7 @@ import { getPostBySlug, latestPosts } from "@/controller/post.controller";
 
 
 
-const IMAGE_URL = process.env.NEXT_PUBLIC_IMAGE_URL; // http://localhost:8701/
+
 
 const stripHtml = (html = "") => html.replace(/<[^>]*>?/gm, "");
 
@@ -60,7 +60,7 @@ export async function generateMetadata({ params }) {
 
     const seoImagePath = blog?.banner || blog?.thumbnail;
     const seoImage = seoImagePath
-        ? `${IMAGE_URL}${seoImagePath}`
+        ? `${seoImagePath}`
         : "https://via.placeholder.com/1200x600?text=Blog";
 
     return {
