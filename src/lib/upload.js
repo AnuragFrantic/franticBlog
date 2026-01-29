@@ -27,7 +27,6 @@
 
 
 
-
 import fs from "fs/promises";
 import path from "path";
 
@@ -35,7 +34,7 @@ export async function saveFile(file) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    const uploadDir = "/home/frantic.in/public_html/public/uploads";
+    const uploadDir = "/home/frantic.in/public_html/uploads";
 
     await fs.mkdir(uploadDir, { recursive: true });
 
