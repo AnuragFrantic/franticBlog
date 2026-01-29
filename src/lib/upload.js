@@ -1,44 +1,18 @@
-// import fs from "fs/promises";
-// import path from "path";
-
-// export async function saveFile(file) {
-//     // file = Web File object
-//     const bytes = await file.arrayBuffer();
-//     const buffer = Buffer.from(bytes);
-
-//     const uploadDir = path.join(process.cwd(), "public/uploads");
-
-//     await fs.mkdir(uploadDir, { recursive: true });
-
-//     const ext = path.extname(file.name);
-//     const base = path
-//         .basename(file.name, ext)
-//         .replace(/\s+/g, "-")
-//         .toLowerCase();
-
-//     const filename = `${Date.now()}-${base}${ext}`;
-//     const filePath = path.join(uploadDir, filename);
-
-//     await fs.writeFile(filePath, buffer);
-
-//     // return public path
-//     return `/uploads/${filename}`;
-// }
-
-
 import fs from "fs/promises";
 import path from "path";
 
 export async function saveFile(file) {
+    // file = Web File object
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    const uploadDir = "/home/frantic.in/public_html/uploads";
+    const uploadDir = path.join(process.cwd(), "public/uploads");
 
     await fs.mkdir(uploadDir, { recursive: true });
 
     const ext = path.extname(file.name);
-    const base = path.basename(file.name, ext)
+    const base = path
+        .basename(file.name, ext)
         .replace(/\s+/g, "-")
         .toLowerCase();
 
@@ -47,5 +21,6 @@ export async function saveFile(file) {
 
     await fs.writeFile(filePath, buffer);
 
+    // return public path
     return `/uploads/${filename}`;
 }
