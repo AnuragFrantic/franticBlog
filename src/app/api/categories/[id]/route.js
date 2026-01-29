@@ -6,12 +6,11 @@ import { saveFile } from "@/lib/upload";
 /* =========================
    UPDATE CATEGORY
 ========================= */
-export async function PUT(req, context) {
+export async function PUT(req, { params }) {
     try {
         await connectDB();
 
-        // ✅ unwrap params
-        const { id } = await context.params;
+        const { id } = await params;
 
         const formData = await req.formData();
 
@@ -24,7 +23,6 @@ export async function PUT(req, context) {
 
         let icon = "";
 
-        // ✅ Save icon if uploaded
         if (iconFile && typeof iconFile !== "string") {
             icon = await saveFile(iconFile);
         }
@@ -36,7 +34,6 @@ export async function PUT(req, context) {
             isActive,
         };
 
-        // only update icon if new file uploaded
         if (icon) data.icon = icon;
 
         const category = await updateCategory(id, data);
@@ -48,10 +45,8 @@ export async function PUT(req, context) {
             );
         }
 
-        return NextResponse.json({
-            success: true,
-            data: category,
-        });
+        return NextResponse.json({ success: true, data: category });
+
     } catch (error) {
         console.error("CATEGORY UPDATE ERROR:", error);
 
@@ -65,12 +60,11 @@ export async function PUT(req, context) {
 /* =========================
    DELETE CATEGORY
 ========================= */
-export async function DELETE(req, context) {
+export async function DELETE(req, { params }) {
     try {
         await connectDB();
 
-        // ✅ unwrap params
-        const { id } = await context.params;
+        const { id } = await params;
 
         await deleteCategory(id);
 
@@ -78,6 +72,7 @@ export async function DELETE(req, context) {
             success: true,
             message: "Category deleted successfully",
         });
+
     } catch (error) {
         console.error("CATEGORY DELETE ERROR:", error);
 
