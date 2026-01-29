@@ -95,10 +95,10 @@ export default function ContactPage() {
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-12">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
 
                         {/* FORM */}
-                        <div className="bg-white rounded-2xl shadow-lg p-8">
+                        <div className="bg-white rounded-2xl shadow-lg p-5 sm:p-6 md:p-8">
 
                             <h2 className="text-xl font-bold mb-6">
                                 Send a Message

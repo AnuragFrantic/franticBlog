@@ -31,11 +31,49 @@ export default async function PolicyPage({ params }) {
     return (
         <section className="min-h-screen  bg-[#050914] py-16 px-4 overflow-hidden">
             {/* Animated Background Elements */}
-            <div className="absolute inset-0">
-                <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-blue-600/25 blur-[120px]" />
-                <div className="absolute -top-40 right-0 h-[500px] w-[500px] rounded-full bg-indigo-500/20 blur-[120px]" />
-                <div className="absolute bottom-0 left-1/2 h-[400px] w-[900px] -translate-x-1/2 rounded-full bg-cyan-500/10 blur-[130px]" />
+            <div className="absolute inset-0 pointer-events-none">
+                {/* Top Left */}
+                <div
+                    className="
+      absolute
+      -top-24 -left-24
+      h-[260px] w-[260px]
+      sm:-top-40 sm:-left-40
+      sm:h-[520px] sm:w-[520px]
+      rounded-full
+      bg-blue-600/25
+      blur-[100px] sm:blur-[120px]
+    "
+                />
+
+                {/* Top Right */}
+                <div
+                    className="
+      absolute
+      -top-24 right-0
+      h-[260px] w-[260px]
+      sm:-top-40
+      sm:h-[500px] sm:w-[500px]
+      rounded-full
+      bg-indigo-500/20
+      blur-[100px] sm:blur-[120px]
+    "
+                />
+
+                {/* Bottom Center */}
+                <div
+                    className="
+      absolute
+      bottom-0 left-1/2 -translate-x-1/2
+      h-[200px] w-[360px]
+      sm:h-[400px] sm:w-[900px]
+      rounded-full
+      bg-cyan-500/10
+      blur-[110px] sm:blur-[130px]
+    "
+                />
             </div>
+
 
             <div className="relative max-w-5xl mx-auto">
 
@@ -49,7 +87,7 @@ export default async function PolicyPage({ params }) {
 
 
                 {/* Main Content */}
-                <article className="bg-white backdrop-blur-xl rounded-3xl border border-white/10 shadow-2xl p-12 prose prose-lg max-w-none prose-headings:font-black prose-headings:text-white prose-headings:bg-gradient-to-r prose-headings:from-white prose-headings:to-gray-200 prose-headings:bg-clip-text prose-a:text-blue-400 hover:prose-a:text-blue-300 prose-strong:text-white prose-p:text-gray-200 prose-li:text-gray-200 prose-blockquote:border-blue-500 prose-blockquote:bg-blue-500/10">
+                <article className="bg-white wrap-break-word backdrop-blur-xl rounded-3xl border border-white/10 shadow-2xl p-12 prose prose-lg max-w-none prose-headings:font-black prose-headings:text-white prose-headings:bg-gradient-to-r prose-headings:from-white prose-headings:to-gray-200 prose-headings:bg-clip-text prose-a:text-blue-400 hover:prose-a:text-blue-300 prose-strong:text-white prose-p:text-gray-200 prose-li:text-gray-200 prose-blockquote:border-blue-500 prose-blockquote:bg-blue-500/10">
                     <div dangerouslySetInnerHTML={{ __html: policy.content }} />
                 </article>
 
