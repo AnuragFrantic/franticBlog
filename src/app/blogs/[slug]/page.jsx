@@ -16,7 +16,9 @@ import { getPostBySlug, latestPosts } from "@/controller/post.controller";
 
 
 const IMAGE_URL =
-    "frantic.in"
+    typeof window !== "undefined"
+        ? `${window.location.protocol}//${window.location.host}/`
+        : "";
 
 const stripHtml = (html = "") => html.replace(/<[^>]*>?/gm, "");
 
@@ -53,6 +55,8 @@ export async function generateMetadata({ params }) {
         };
     }
 
+    const siteUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
+
     const seoTitle = blog?.title || "Blog";
     const seoDesc =
         blog?.metaDescription ||
@@ -60,20 +64,32 @@ export async function generateMetadata({ params }) {
         "Read this blog.";
 
     const seoImagePath = blog?.banner || blog?.thumbnail;
+
+    // 👉 Always absolute URL
     const seoImage = seoImagePath
-        ? `${IMAGE_URL}${seoImagePath}`
-        : "https://via.placeholder.com/1200x600?text=Blog";
+        ? `${siteUrl}/${seoImagePath.replace(/^\/+/, "")}`
+        : `${siteUrl}/default-og.jpg`;
 
     return {
         title: seoTitle,
         description: seoDesc,
+        metadataBase: new URL(siteUrl),
+
         openGraph: {
             title: seoTitle,
             description: seoDesc,
+            url: `/blogs/${slug}`,
             type: "article",
-            url: `/blog/${slug}`,
-            images: [{ url: seoImage }],
+            images: [
+                {
+                    url: seoImage,
+                    width: 1200,
+                    height: 630,
+                    alt: seoTitle,
+                },
+            ],
         },
+
         twitter: {
             card: "summary_large_image",
             title: seoTitle,
@@ -82,6 +98,7 @@ export async function generateMetadata({ params }) {
         },
     };
 }
+
 
 export default async function BlogDetailPage({ params }) {
     const { slug } = await params;
