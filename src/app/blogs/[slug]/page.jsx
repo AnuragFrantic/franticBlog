@@ -16,9 +16,7 @@ import { getPostBySlug, latestPosts } from "@/controller/post.controller";
 
 
 const IMAGE_URL =
-    typeof window !== "undefined"
-        ? `${window.location.protocol}//${window.location.host}`
-        : "";
+    "frantic.in"
 
 const stripHtml = (html = "") => html.replace(/<[^>]*>?/gm, "");
 
