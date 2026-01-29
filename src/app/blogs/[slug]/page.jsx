@@ -15,7 +15,10 @@ import { getPostBySlug, latestPosts } from "@/controller/post.controller";
 
 
 
-
+const IMAGE_URL =
+    typeof window !== "undefined"
+        ? `${window.location.protocol}//${window.location.host}`
+        : "";
 
 const stripHtml = (html = "") => html.replace(/<[^>]*>?/gm, "");
 
@@ -60,7 +63,7 @@ export async function generateMetadata({ params }) {
 
     const seoImagePath = blog?.banner || blog?.thumbnail;
     const seoImage = seoImagePath
-        ? `${seoImagePath}`
+        ? `${IMAGE_URL}${seoImagePath}`
         : "https://via.placeholder.com/1200x600?text=Blog";
 
     return {
