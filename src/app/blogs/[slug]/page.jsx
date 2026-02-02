@@ -63,7 +63,7 @@ export async function generateMetadata({ params }) {
         stripHtml(blog?.content || "").slice(0, 160) ||
         "Read this blog.";
 
-    const seoImagePath = blog?.banner || blog?.thumbnail;
+    const seoImagePath = blog?.thumbnail || blog?.banner;
 
     // 👉 Always absolute URL
     const seoImage = seoImagePath
