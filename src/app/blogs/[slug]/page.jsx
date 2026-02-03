@@ -114,15 +114,15 @@ export default async function BlogDetailPage({ params }) {
         : "https://via.placeholder.com/1200x600?text=Blog";
 
     return (
-        <div className="min-h-screen bg-[#050914] text-white">
+        <div className="min-h-screen  text-white">
             {/* ✅ HERO SECTION */}
             <section className="relative overflow-hidden border-b border-white/10">
                 {/* Glow */}
-                <div className="absolute inset-0">
+                {/* <div className="absolute inset-0">
                     <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-blue-600/25 blur-[120px]" />
                     <div className="absolute -top-40 right-0 h-[500px] w-[500px] rounded-full bg-indigo-500/20 blur-[120px]" />
                     <div className="absolute bottom-0 left-1/2 h-[400px] w-[900px] -translate-x-1/2 rounded-full bg-cyan-500/10 blur-[130px]" />
-                </div>
+                </div> */}
 
                 <div className="relative max-w-7xl mx-auto px-4 pt-6 sm:pt-10 pb-10 sm:pb-16">
                     {/* Breadcrumb */}

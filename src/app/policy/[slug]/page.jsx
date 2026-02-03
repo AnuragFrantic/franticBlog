@@ -29,10 +29,10 @@ export default async function PolicyPage({ params }) {
     }
 
     return (
-        <section className="min-h-screen  bg-[#050914] py-16 px-4 overflow-hidden">
+        <section className="min-h-screen   py-16 px-4 overflow-hidden">
             {/* Animated Background Elements */}
-            <div className="absolute inset-0 pointer-events-none">
-                {/* Top Left */}
+            {/* <div className="absolute inset-0 pointer-events-none">
+            
                 <div
                     className="
       absolute
@@ -46,7 +46,7 @@ export default async function PolicyPage({ params }) {
     "
                 />
 
-                {/* Top Right */}
+             
                 <div
                     className="
       absolute
@@ -60,7 +60,7 @@ export default async function PolicyPage({ params }) {
     "
                 />
 
-                {/* Bottom Center */}
+             
                 <div
                     className="
       absolute
@@ -72,7 +72,7 @@ export default async function PolicyPage({ params }) {
       blur-[110px] sm:blur-[130px]
     "
                 />
-            </div>
+            </div> */}
 
 
             <div className="relative max-w-5xl mx-auto">

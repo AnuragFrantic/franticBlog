@@ -1,8 +1,55 @@
 @import "tailwindcss";
 
 
-@custom-variant dark (&:is(.dark *));
 
+
+@tailwind utilities;
+
+/* Light mode */
+body {
+    background-color: #ffffff;
+    color: #0f172a;
+}
+
+/* Dark mode */
+.dark body {
+    background-color: #0b1220;
+
+}
+
+/* smooth transition */
+body {
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+
+
+
+
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    margin-top: 10px;
+
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    margin-top: 10px;
+
+
+}
+
+p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    /* color: #d1d5db; */
+}
 
 @theme inline {
     --color-background: var(--background);

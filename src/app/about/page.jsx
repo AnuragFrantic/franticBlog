@@ -8,13 +8,13 @@ export const metadata = {
 
 export default function AboutPage() {
     return (
-        <section className="min-h-screen bg-[#050914] py-20 px-4 overflow-hidden relative">
+        <section className="min-h-screen  py-20 px-4 overflow-hidden relative">
             {/* Animated Background */}
-            <div className="absolute inset-0">
+            {/* <div className="absolute inset-0">
                 <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-blue-600/25 blur-[120px] animate-pulse" />
                 <div className="absolute -top-40 right-0 h-[500px] w-[500px] rounded-full bg-indigo-500/20 blur-[120px] animate-pulse delay-700" />
                 <div className="absolute bottom-0 left-1/2 h-[400px] w-[900px] -translate-x-1/2 rounded-full bg-cyan-500/10 blur-[130px] animate-pulse delay-1400" />
-            </div>
+            </div> */}
 
             <div className="relative max-w-6xl mx-auto">
                 {/* Hero Header */}

@@ -52,7 +52,7 @@ export default function ContactPage() {
     };
 
     return (
-        <div className="min-h-screen bg-[#050914]">
+        <div className="min-h-screen ">
 
             {/* SUCCESS POPUP */}
             {showPopup && (
