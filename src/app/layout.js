@@ -84,6 +84,9 @@ import Script from "next/script";
 export const metadata = {
   title: "Frantic Infotech Blogs",
   description: "Latest technology blogs and development insights by Frantic Infotech.",
+  other: {
+    "google-adsense-account": "ca-pub-6395818089964635",
+  },
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
@@ -105,10 +108,9 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       {/* ✅ Google AdSense Script */}
       <Script
-        async
+        strategy="beforeInteractive"
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6395818089964635"
         crossOrigin="anonymous"
-        strategy="afterInteractive"
       />
       <body className={inter.variable}>
         <Providers>
