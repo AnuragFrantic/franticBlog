@@ -93,9 +93,9 @@ export default function Navbar() {
 
             <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
 
-                {/* Logo */}
+
                 <Link href="/" className="flex w-full items-center justify-center gap-2">
-                    <Image src={logo} alt="Logo" width={140} height={40} priority />
+                    <Image src={logo} alt="Logo" width={140} height={40} priority className="bg-white p-2 rounded-md" />
                 </Link>
 
                 {/* Theme Toggle */}
