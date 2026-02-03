@@ -79,6 +79,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import NavbarWrapper from "@/components/common/NavbarWrapper";
 import Providers from "./provider";
+import Script from "next/script";
 
 export const metadata = {
   title: "Frantic Infotech Blogs",
@@ -96,10 +97,19 @@ const inter = Inter({
   display: "swap",
 });
 
+
+
 export default function RootLayout({ children }) {
 
   return (
     <html lang="en" suppressHydrationWarning>
+      {/* ✅ Google AdSense Script */}
+      <Script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6395818089964635"
+        crossOrigin="anonymous"
+        strategy="afterInteractive"
+      />
       <body className={inter.variable}>
         <Providers>
 
