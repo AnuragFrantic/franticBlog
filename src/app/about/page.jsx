@@ -47,7 +47,7 @@ export default function AboutPage() {
                                 </p>
                                 <p>
                                     We specialize in <span className="font-bold text-blue-400">advanced web applications</span> and
-                                    <span className="font-bold text-emerald-400">native mobile apps</span>, successfully fulfilling requirements
+                                    <span className="font-bold text-emerald-400"> native mobile apps</span>, successfully fulfilling requirements
                                     from small projects to enterprise-scale solutions.
                                 </p>
                             </div>

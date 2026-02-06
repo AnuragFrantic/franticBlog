@@ -1,76 +1,3 @@
-// import Footer from "@/components/common/Footer";
-// import "./globals.css";
-// import { Inter } from "next/font/google";
-// import NavbarWrapper from "@/components/common/NavbarWrapper";
-
-// export const metadata = {
-//   title: "Frantic Infotech Blogs",
-//   description: "Latest technology blogs and development insights by Frantic Infotech.",
-
-//   icons: {
-//     icon: "/favicon.svg",
-//     shortcut: "/favicon.svg",
-//     apple: "/favicon.svg",
-//   },
-// };
-
-// const inter = Inter({
-//   subsets: ["latin"],
-//   variable: "--font-inter",
-//   display: "swap",
-// });
-
-// export default function RootLayout({ children }) {
-//   const baseUrl = "https://frantic-blog.vercel.app";
-
-//   const jsonLd = {
-//     "@context": "https://schema.org",
-//     "@graph": [
-//       {
-//         "@type": "Organization",
-//         "@id": `${baseUrl}/#organization`,
-//         name: "Frantic Infotech",
-//         url: baseUrl,
-//         logo: {
-//           "@type": "ImageObject",
-//           url: `${baseUrl}/favicon.svg`,
-//         },
-//       },
-//       {
-//         "@type": "WebSite",
-//         "@id": `${baseUrl}/#website`,
-//         url: baseUrl,
-//         name: "Frantic Infotech Blogs",
-//         publisher: {
-//           "@id": `${baseUrl}/#organization`,
-//         },
-//         potentialAction: {
-//           "@type": "SearchAction",
-//           target: `${baseUrl}/blogs?search={search_term_string}`,
-//           "query-input": "required name=search_term_string",
-//         },
-//       },
-//     ],
-//   };
-
-//   return (
-//     <html lang="en">
-//       <body suppressHydrationWarning className={inter.variable}>
-//         <NavbarWrapper />
-
-//         {/* ✅ Global Schema */}
-//         <script
-//           type="application/ld+json"
-//           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-//         />
-
-//         {children}
-
-//         <Footer />
-//       </body>
-//     </html>
-//   );
-// }
 
 
 
@@ -78,7 +5,7 @@ import Footer from "@/components/common/Footer";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import NavbarWrapper from "@/components/common/NavbarWrapper";
-import Providers from "./provider";
+
 import Script from "next/script";
 
 export const metadata = {
@@ -86,7 +13,9 @@ export const metadata = {
   description: "Latest technology blogs and development insights by Frantic Infotech.",
   other: {
     "google-adsense-account": "ca-pub-6395818089964635",
+    "google-site-verification": "4Dve4f72U8qIaWmSKK8_cMhEZ74Fjh7VLvDa3pDN7g4"
   },
+
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
@@ -102,26 +31,46 @@ const inter = Inter({
 
 
 
+
+
 export default function RootLayout({ children }) {
 
   return (
     <html lang="en" suppressHydrationWarning>
+
+      {/* ✅ Google Analytics */}
+      <Script
+        strategy="afterInteractive"
+        src="https://www.googletagmanager.com/gtag/js?id=G-V0MMDVME95"
+      />
+
+      <Script
+        id="google-analytics"
+        strategy="afterInteractive"
+      >
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-V0MMDVME95');
+        `}
+      </Script>
       {/* ✅ Google AdSense Script */}
       <Script
         strategy="beforeInteractive"
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6395818089964635"
         crossOrigin="anonymous"
       />
-      <body className={inter.variable}>
-        <Providers>
+      <body className={`${inter.variable} `}>
 
-          <NavbarWrapper />
 
-          {children}
+        <NavbarWrapper />
 
-          <Footer />
+        {children}
 
-        </Providers>
+        <Footer />
+
+
       </body>
     </html>
   );

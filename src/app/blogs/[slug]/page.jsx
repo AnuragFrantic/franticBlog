@@ -114,7 +114,7 @@ export default async function BlogDetailPage({ params }) {
         : "https://via.placeholder.com/1200x600?text=Blog";
 
     return (
-        <div className="min-h-screen  text-white">
+        <div className="min-h-screen bg-[#050914]  text-white">
             {/* ✅ HERO SECTION */}
             <section className="relative overflow-hidden border-b border-white/10">
                 {/* Glow */}
@@ -174,9 +174,9 @@ export default async function BlogDetailPage({ params }) {
                     </div>
 
                     {/* Banner */}
-                    <div className="mt-8 sm:mt-10 relative h-[220px] sm:h-[380px] lg:h-[460px] overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-2xl">
+                    <div className="mt-8 sm:mt-10 relative h-[220px] sm:h-[380px] lg:h-[460px] overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-2xl ">
                         <Image
-                            src={bannerImage}
+                            src={process.env.NEXT_PUBLIC_IMAGE_URL + bannerImage}
                             alt={blog?.title || "blog"}
                             fill
                             priority
@@ -193,7 +193,7 @@ export default async function BlogDetailPage({ params }) {
                     {/* Content */}
                     <div className="col-span-12 lg:col-span-8 space-y-6">
                         {/* Intro Card */}
-                        {blog?.metaDescription && (
+                        {/* {blog?.metaDescription && (
                             <Card className="rounded-3xl bg-white/5 border border-white/10 overflow-hidden">
                                 <CardContent className="p-5 sm:p-8">
                                     <p className="text-white/80 text-base sm:text-lg leading-relaxed font-semibold">
@@ -201,7 +201,7 @@ export default async function BlogDetailPage({ params }) {
                                     </p>
                                 </CardContent>
                             </Card>
-                        )}
+                        )} */}
 
                         {/* Blog Content */}
                         <Card className="rounded-3xl bg-white/5 border border-white/10 overflow-hidden">
@@ -214,7 +214,7 @@ export default async function BlogDetailPage({ params }) {
                   prose-strong:text-white
                   prose-li:text-white/80
                   prose-blockquote:border-white/20 prose-blockquote:text-white/70
-                  prose-img:rounded-2xl"
+                  prose-img:rounded-2xl break-words whitespace-normal"
                                     dangerouslySetInnerHTML={{ __html: blog?.content || "" }}
                                 />
                             </CardContent>
@@ -224,7 +224,7 @@ export default async function BlogDetailPage({ params }) {
                             <CardFooter className="p-5 sm:p-6 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
                                 <Button
                                     asChild
-                                    className="rounded-2xl bg-white/10 hover:bg-white/15 border border-white/10 w-full sm:w-auto"
+                                    className="rounded-2xl bg-white/10 text-white hover:bg-white/15 border border-white/10 w-full sm:w-auto"
                                 >
                                     <Link href="/blogs">← Back to Blogs</Link>
                                 </Button>
@@ -261,7 +261,7 @@ export default async function BlogDetailPage({ params }) {
 
                                     <Button
                                         asChild
-                                        className="rounded-2xl bg-blue-600 hover:bg-blue-700"
+                                        className="rounded-2xl bg-blue-600 text-white hover:bg-blue-700"
                                     >
                                         <Link href="/">Go to Homepage</Link>
                                     </Button>
@@ -296,7 +296,8 @@ export default async function BlogDetailPage({ params }) {
                                                     >
                                                         <div className="relative w-16 h-16 rounded-2xl overflow-hidden border border-white/10 shrink-0">
                                                             <Image
-                                                                src={imgPath}
+
+                                                                src={process.env.NEXT_PUBLIC_IMAGE_URL + imgPath}
                                                                 alt={b.title || "blog"}
                                                                 fill
                                                                 className="object-cover"

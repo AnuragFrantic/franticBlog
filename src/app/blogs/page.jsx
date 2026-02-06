@@ -85,9 +85,9 @@ export default function BlogsPage() {
     }, [blogs, activeCat, search]);
 
     return (
-        <div className="min-h-screen  text-white">
+        <div className="min-h-screen bg-[#050914]  text-white">
             {/* ✅ HERO */}
-            <section className="relative overflow-hidden border-b border-white/10">
+            <section className="relative overflow-hidden border-b   border-white/10">
                 {/* background glow */}
                 {/* <div className="absolute inset-0">
                     <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-blue-600/25 blur-[120px]" />
@@ -232,7 +232,7 @@ export default function BlogsPage() {
                                                         {/* ✅ Mobile responsive image */}
                                                         <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] overflow-hidden">
                                                             <Image
-                                                                src={image}
+                                                                src={process.env.NEXT_PUBLIC_IMAGE_URL + image}
                                                                 alt={blog?.title || "blog"}
                                                                 fill
                                                                 priority={false}
@@ -291,7 +291,7 @@ export default function BlogsPage() {
                                                     </CardContent>
 
                                                     <CardFooter className="p-4 pt-0 mt-auto">
-                                                        <Button className="rounded-2xl w-full  bg-blue-600 hover:bg-blue-700">
+                                                        <Button className="rounded-2xl w-full text-white  bg-blue-600 hover:bg-blue-700">
                                                             Read More →
                                                         </Button>
                                                     </CardFooter>
@@ -317,8 +317,8 @@ export default function BlogsPage() {
                                     <CardContent className="p-4 space-y-2">
                                         <Button
                                             onClick={() => setActiveCat("all")}
-                                            className={`w-full justify-start rounded-2xl ${activeCat === "all"
-                                                ? "bg-blue-600 hover:bg-blue-600"
+                                            className={`w-full justify-start rounded-2xl text-white ${activeCat === "all"
+                                                ? "bg-blue-600 hover:bg-blue-600 "
                                                 : "bg-white/5 hover:bg-white/10"
                                                 }`}
                                         >

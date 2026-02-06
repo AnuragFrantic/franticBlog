@@ -71,11 +71,52 @@ export async function createPost(data) {
 /* ===================== GET LIST ====================== */
 /* ===================================================== */
 
+// export async function getPosts(filters = {}) {
+//     const { keyword, page = 1, perPage = 10 } = filters;
+
+//     const query = {};
+
+//     if (keyword) {
+//         query.$or = [
+//             { title: { $regex: keyword, $options: "i" } },
+//             { metaDescription: { $regex: keyword, $options: "i" } },
+//             { content: { $regex: keyword, $options: "i" } },
+//         ];
+//     }
+
+//     const skip = (Number(page) - 1) * Number(perPage);
+
+//     const totalDocs = await Post.countDocuments(query);
+
+//     const posts = await Post.find(query)
+//         .populate("category")
+//         .sort({ createdAt: -1 })
+//         .skip(skip)
+//         .limit(Number(perPage));
+
+//     return {
+//         posts,
+//         pagination: {
+//             totalDocs,
+//             totalPages: Math.ceil(totalDocs / perPage),
+//             page: Number(page),
+//             perPage: Number(perPage),
+//         },
+//     };
+// }
+
 export async function getPosts(filters = {}) {
-    const { keyword, page = 1, perPage = 10 } = filters;
+
+    const { id, keyword, page = 1, perPage = 10 } = filters;
 
     const query = {};
 
+    // ✅ FILTER BY ID (for edit page)
+    if (id) {
+        query._id = id;
+    }
+
+    // ✅ SEARCH
     if (keyword) {
         query.$or = [
             { title: { $regex: keyword, $options: "i" } },
@@ -104,6 +145,7 @@ export async function getPosts(filters = {}) {
         },
     };
 }
+
 
 /* ===================================================== */
 /* ===================== GET BY ID ===================== */

@@ -71,7 +71,7 @@ export default function BlogForm({ id = null }) {
 
                 const res = await PostService.getById(id);
 
-                const blg = res?.data?.[0] || res?.data || res;
+                const blg = res?.posts?.[0] || res?.posts || res;
 
                 if (!blg) return;
 

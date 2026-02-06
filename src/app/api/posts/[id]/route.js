@@ -8,29 +8,22 @@ import { NextResponse } from "next/server";
    GET POST BY ID
 =========================== */
 export async function GET(req, { params }) {
-    try {
-        await connectDB();
+    const { id } = await params;
 
-        const result = await getPosts({ id: params.id });
+    await connectDB();
 
-        if (!result.posts.length) {
-            return NextResponse.json(
-                { success: false, message: "Post not found" },
-                { status: 404 }
-            );
-        }
+    const result = await getPosts({ id });
 
-        return NextResponse.json({
-            success: true,
-            data: result.posts[0],
-        });
-    } catch (err) {
+    if (!result.posts.length) {
         return NextResponse.json(
-            { success: false, message: err.message },
-            { status: 500 }
+            { success: 0, message: "Post not found" },
+            { status: 404 }
         );
     }
+
+    return NextResponse.json(result);
 }
+
 
 
 
