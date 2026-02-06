@@ -189,16 +189,24 @@ export default async function BlogDetailPage({ params }) {
                     </div>
 
                     {/* Banner */}
-                    <div className="mt-8 sm:mt-10 relative h-[220px] sm:h-[380px] lg:h-[460px] overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-2xl ">
+                    <div className="mt-8 sm:mt-10 relative h-[220px] sm:h-[380px] lg:h-[460px]
+                overflow-hidden rounded-3xl border border-white/10
+                bg-black shadow-2xl">
+
                         <Image
                             src={process.env.NEXT_PUBLIC_IMAGE_URL + bannerImage}
                             alt={blog?.title || "blog"}
                             fill
                             priority
-                            className="object-cover"
+                            className="object-contain"
+                            sizes="(max-width:640px) 100vw,
+           (max-width:1024px) 90vw,
+           1200px"
                         />
+
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent" />
                     </div>
+
                 </div>
             </section>
 
