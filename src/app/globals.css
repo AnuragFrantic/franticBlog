@@ -174,6 +174,13 @@ p {
 }
 
 
+.blogtexteditor a {
+    color: #60a5fa !important;
+    /* Tailwind blue-400 */
+    text-decoration: underline;
+}
+
+
 .prose.prose-invert pre {
     background: #F9F9F9;
     color: black;
@@ -186,7 +193,6 @@ p {
 .prose.prose-invert strong,
 .prose.prose-invert p em,
 .prose.prose-invert span,
-.prose.prose-invert a,
 .prose.prose-invert u {
     background: transparent !important;
     color: white !important;
@@ -218,17 +224,17 @@ p {
     padding: 10px;
 }
 
-
-
-/* Editor Content Styling */
+/* Root Blog Typography */
 .blogtexteditor {
-    @apply text-slate-200 leading-8 text-[16px] md:text-[17px];
+    @apply text-slate-200 leading-relaxed text-[16px] md:text-[17px] max-w-none;
 }
 
+/* Paragraphs */
 .blogtexteditor p {
-    @apply mb-4;
+    @apply mb-5 text-slate-300;
 }
 
+/* Lists */
 .blogtexteditor ul {
     @apply space-y-3 pl-6 list-disc;
 }
@@ -237,14 +243,43 @@ p {
     @apply text-slate-300;
 }
 
+/* Strong / Bold */
 .blogtexteditor strong {
     @apply text-white font-semibold;
 }
 
-.blogtexteditor h2 {
-    @apply text-xl font-semibold text-white mt-6 mb-3;
+/* H1 (Blog Title inside content if any) */
+.blogtexteditor h1 {
+    @apply text-3xl md:text-4xl font-extrabold text-white mb-6 mt-2 leading-tight;
 }
 
+/* H2 (Main Sections) */
+.blogtexteditor h2 {
+    @apply text-2xl md:text-3xl font-bold text-white mt-10 mb-4 leading-snug;
+}
+
+/* H3 (Sub Sections) */
 .blogtexteditor h3 {
-    @apply text-lg font-semibold text-white mt-5 mb-2;
+    @apply text-xl md:text-2xl font-semibold text-slate-100 mt-8 mb-3;
+}
+
+/* Optional: Emoji spacing in headings */
+.blogtexteditor h2 span,
+.blogtexteditor h3 span {
+    @apply mr-2;
+}
+
+/* Blockquotes */
+.blogtexteditor blockquote {
+    @apply border-l-4 border-blue-500 pl-4 italic text-slate-300 my-6;
+}
+
+/* Links */
+.blogtexteditor a {
+    @apply text-blue-400 underline-offset-4 hover:underline;
+}
+
+/* Images */
+.blogtexteditor img {
+    @apply rounded-xl my-6;
 }

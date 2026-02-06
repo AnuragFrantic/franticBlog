@@ -101,8 +101,18 @@ export async function generateMetadata({ params }) {
 
 
 const cleanHTML = (html = "") => {
-    return html.replace(/\s*<br\s*\/?>\s*/gi, " ");
+    return html
+        .replace(/&nbsp;/g, " ")
+        .replace(/[\u200B-\u200D\uFEFF]/g, "")
+        .replace(/\s*<br\s*\/?>\s*/gi, " ")
+
+        // 🔥 Remove <ul><li><ul> nesting
+        .replace(/<li>\s*<ul>/gi, "")
+        .replace(/<\/ul>\s*<\/li>/gi, "")
+
+        .replace(/\s{2,}/g, " ");
 };
+
 
 
 export default async function BlogDetailPage({ params }) {
@@ -225,7 +235,9 @@ export default async function BlogDetailPage({ params }) {
       break-all overflow-hidden
       [&_*]:break-words [&_*]:whitespace-normal
     "
-                                    dangerouslySetInnerHTML={{ __html: blog?.content || "" }}
+                                    dangerouslySetInnerHTML={{
+                                        __html: cleanHTML(blog?.content || "")
+                                    }}
                                 />
                             </CardContent>
 
