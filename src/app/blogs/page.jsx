@@ -230,16 +230,16 @@ export default function BlogsPage() {
                                                 <Card className="h-full flex flex-col rounded-3xl overflow-hidden bg-white/5 border border-white/10 shadow-lg hover:shadow-2xl transition-all duration-300">
                                                     <CardHeader className="p-0">
                                                         {/* ✅ Mobile responsive image */}
-                                                        <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] overflow-hidden">
+                                                        <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] overflow-hidden bg-black">
                                                             <Image
                                                                 src={process.env.NEXT_PUBLIC_IMAGE_URL + image}
                                                                 alt={blog?.title || "blog"}
                                                                 fill
                                                                 priority={false}
-                                                                className="object-cover scale-100 group-hover:scale-110 transition duration-700"
+                                                                className="object-contain scale-100 group-hover:scale-105 transition duration-700"
                                                                 sizes="(max-width: 640px) 100vw,
-  (max-width: 1024px) 50vw,
-  33vw"
+            (max-width: 1024px) 50vw,
+            33vw"
                                                                 onError={(e) => {
                                                                     e.currentTarget.src =
                                                                         "https://via.placeholder.com/600x400?text=Blog";
@@ -258,6 +258,7 @@ export default function BlogsPage() {
                                                                 </div>
                                                             )}
                                                         </div>
+
                                                     </CardHeader>
 
                                                     <CardContent className="p-5 flex-1 flex flex-col">
