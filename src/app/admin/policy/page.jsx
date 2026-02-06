@@ -162,7 +162,7 @@ export default function AdminPolicyPage() {
     }, [policies, search]);
 
     return (
-        <div className="max-w-5xl mx-auto p-6 space-y-6">
+        <div className="max-w-5xl  mx-auto p-6 space-y-6">
 
             {/* ================= FORM ================= */}
             <Card className="rounded-2xl border overflow-hidden">

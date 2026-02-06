@@ -100,6 +100,11 @@ export async function generateMetadata({ params }) {
 }
 
 
+const cleanHTML = (html = "") => {
+    return html.replace(/\s*<br\s*\/?>\s*/gi, " ");
+};
+
+
 export default async function BlogDetailPage({ params }) {
     const { slug } = await params;
 
@@ -207,17 +212,23 @@ export default async function BlogDetailPage({ params }) {
                         <Card className="rounded-3xl bg-white/5 border border-white/10 overflow-hidden">
                             <CardContent className="p-5 sm:p-10 blogtexteditor">
                                 <div
-                                    className="prose prose-invert prose-base sm:prose-lg max-w-none
-                  prose-headings:font-black text-white prose-headings:text-white
-                  prose-p:text-white/80
-                  prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
-                  prose-strong:text-white
-                  prose-li:text-white/80
-                  prose-blockquote:border-white/20 prose-blockquote:text-white/70
-                  prose-img:rounded-2xl break-words whitespace-normal"
+                                    className="
+      prose prose-invert prose-base sm:prose-lg max-w-none
+      prose-headings:font-black text-white prose-headings:text-white
+      prose-p:text-white/80
+      prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
+      prose-strong:text-white
+      prose-li:text-white/80
+      prose-blockquote:border-white/20 prose-blockquote:text-white/70
+      prose-img:rounded-2xl
+
+      break-all overflow-hidden
+      [&_*]:break-words [&_*]:whitespace-normal
+    "
                                     dangerouslySetInnerHTML={{ __html: blog?.content || "" }}
                                 />
                             </CardContent>
+
 
                             <Separator className="bg-white/10" />
 

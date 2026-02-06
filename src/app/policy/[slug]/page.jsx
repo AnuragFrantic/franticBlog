@@ -29,7 +29,7 @@ export default async function PolicyPage({ params }) {
     }
 
     return (
-        <section className="min-h-screen   py-16 px-4 overflow-hidden">
+        <section className="min-h-screen bg-[#050914]   py-16 px-4 overflow-hidden">
             {/* Animated Background Elements */}
             {/* <div className="absolute inset-0 pointer-events-none">
             

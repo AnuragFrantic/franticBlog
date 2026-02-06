@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function AboutPage() {
     return (
-        <section className="min-h-screen  py-20 px-4 overflow-hidden relative">
+        <section className="min-h-screen bg-[#050914]  py-20 px-4 overflow-hidden relative">
             {/* Animated Background */}
             {/* <div className="absolute inset-0">
                 <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-blue-600/25 blur-[120px] animate-pulse" />
