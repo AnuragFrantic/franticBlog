@@ -29,7 +29,7 @@ export default async function PolicyPage({ params }) {
     }
 
     return (
-        <section className="min-h-screen bg-[#050914]   py-16 px-4 overflow-hidden">
+        <section className="min-h-screen    py-16 px-4 overflow-hidden">
             {/* Animated Background Elements */}
             {/* <div className="absolute inset-0 pointer-events-none">
             
@@ -78,8 +78,8 @@ export default async function PolicyPage({ params }) {
             <div className="relative max-w-5xl mx-auto">
 
                 {/* Hero Header */}
-                <div className="text-center mb-20">
-                    <h1 className="text-5xl md:text-7xl font-black bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent mb-8 leading-tight">
+                <div className="text-center mb-5">
+                    <h1 className="text-5xl md:text-7xl font-black    mb-4 leading-tight">
                         {policy.title}
                     </h1>
 
@@ -92,7 +92,7 @@ export default async function PolicyPage({ params }) {
                 </article>
 
                 {/* Bottom CTA */}
-                <div className="text-center mt-20 pt-16 border-t border-white/10">
+                {/* <div className="text-center mt-20 pt-16 border-t border-white/10">
                     <h3 className="text-2xl font-bold text-gray-200 mb-6">Explore More Insights</h3>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link href={'/'} className="px-8 py-4 rounded-2xl w-full bg-blue-600 w-max hover:bg-blue-700 text-white font-semibold rounded-2xl shadow-xl hover:shadow-2xl  transform hover:-translate-y-1 transition-all duration-300">
@@ -100,7 +100,7 @@ export default async function PolicyPage({ params }) {
                         </Link>
 
                     </div>
-                </div>
+                </div> */}
             </div>
         </section>
     );

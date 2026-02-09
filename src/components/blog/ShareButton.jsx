@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { Twitter, Linkedin, Link as LinkIcon, Check, X } from "lucide-react";
+import Image from "next/image";
+import xicon from "@/app/assets/xicon.png"
 
 export default function ShareButtons() {
     const [copied, setCopied] = useState(false);
@@ -17,10 +20,9 @@ export default function ShareButtons() {
 
             await navigator.clipboard.writeText(url);
             setCopied(true);
-
             setTimeout(() => setCopied(false), 1500);
-        } catch (error) {
-            console.log("Copy failed:", error);
+        } catch (err) {
+            console.error("Copy failed", err);
         }
     };
 
@@ -47,32 +49,64 @@ export default function ShareButtons() {
     };
 
     return (
-        <div className="mt-6 flex flex-wrap items-center gap-3">
-            <span className="text-sm text-white/70 mr-1">Share:</span>
+        <div className="flex items-center gap-3 text-sm text-gray-700">
+            {/* <span className="mr-1">Share</span> */}
 
+            {/* Twitter */}
             <button
-                type="button"
                 onClick={handleTwitter}
-                className="px-4 py-2 rounded-full bg-white/10 hover:bg-white/15 border border-white/10 text-white text-sm font-semibold backdrop-blur-md transition"
+                aria-label="Share on Twitter"
+                className="
+          flex items-center justify-center
+          h-9 w-9
+          rounded-full
+          border border-gray-300
+          hover:bg-gray-100
+          transition
+        "
             >
-                Twitter
+                {/* <X className="h-4 w-4" /> */}
+                <Image src={xicon} className="h-4 w-4">
+
+                </Image>
             </button>
 
+            {/* LinkedIn */}
             <button
-                type="button"
                 onClick={handleLinkedIn}
-                className="px-4 py-2 rounded-full bg-white/10 hover:bg-white/15 border border-white/10 text-white text-sm font-semibold backdrop-blur-md transition"
+                aria-label="Share on LinkedIn"
+                className="
+          flex items-center justify-center
+          h-9 w-9
+          rounded-full
+          border border-gray-300
+          hover:bg-gray-100
+          transition
+        "
             >
-                LinkedIn
+                <Linkedin className="h-4 w-4" />
             </button>
 
+            {/* Copy Link */}
             <button
-                type="button"
                 onClick={handleCopy}
+                aria-label="Copy link"
                 disabled={copied}
-                className="px-4 py-2 rounded-full bg-white/10 hover:bg-white/15 disabled:hover:bg-white/10 disabled:opacity-70 border border-white/10 text-white text-sm font-semibold backdrop-blur-md transition"
+                className="
+          flex items-center justify-center
+          h-9 w-9
+          rounded-full
+          border border-gray-300
+          hover:bg-gray-100
+          disabled:opacity-60
+          transition
+        "
             >
-                {copied ? "Copied ✅" : "Copy Link"}
+                {copied ? (
+                    <Check className="h-4 w-4" />
+                ) : (
+                    <LinkIcon className="h-4 w-4" />
+                )}
             </button>
         </div>
     );

@@ -52,7 +52,7 @@ export default function ContactPage() {
     };
 
     return (
-        <div className="min-h-screen bg-[#050914] ">
+        <div className="min-h-screen  ">
 
             {/* SUCCESS POPUP */}
             {showPopup && (
@@ -81,16 +81,16 @@ export default function ContactPage() {
             )}
 
             {/* MAIN SECTION */}
-            <section className="py-16 px-4 relative">
+            <section className="py-8 px-4 relative">
 
                 <div className="max-w-6xl mx-auto">
 
                     {/* HEADER */}
                     <div className="text-center mb-14">
-                        <h1 className="text-5xl md:text-7xl font-black bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent mb-8">
+                        <h1 className="text-5xl md:text-7xl font-black  mb-8">
                             Contact Us
                         </h1>
-                        <p className="text-gray-300">
+                        <p className="">
                             We'd love to hear from you. Send us a message.
                         </p>
                     </div>

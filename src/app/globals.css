@@ -5,17 +5,7 @@
 
 @tailwind utilities;
 
-/* Light mode */
-body {
-    background-color: #ffffff;
-    color: #0f172a;
-}
 
-/* Dark mode */
-.dark body {
-    background-color: #0b1220;
-
-}
 
 /* smooth transition */
 body {
@@ -283,3 +273,279 @@ p {
 .blogtexteditor img {
     @apply rounded-xl my-6;
 }
+
+
+
+
+
+
+@layer base {
+    :root {
+        --background: 40 20% 98%;
+        --foreground: 0 0% 8%;
+
+        --card: 0 0% 100%;
+        --card-foreground: 0 0% 8%;
+
+        --popover: 0 0% 100%;
+        --popover-foreground: 0 0% 8%;
+
+        --primary: 0 0% 8%;
+        --primary-foreground: 0 0% 98%;
+
+        --secondary: 40 15% 95%;
+        --secondary-foreground: 0 0% 8%;
+
+        --muted: 40 10% 92%;
+        --muted-foreground: 0 0% 40%;
+
+        --accent: 0 72% 51%;
+        --accent-foreground: 0 0% 100%;
+
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+
+        --border: 0 0% 88%;
+        --input: 0 0% 88%;
+        --ring: 0 0% 8%;
+
+        --radius: 0.25rem;
+
+        /* Custom editorial tokens */
+        --font-serif: 'Playfair Display', Georgia, serif;
+        --font-sans: 'Inter', system-ui, sans-serif;
+
+        --text-headline: 0 0% 8%;
+        --text-body: 0 0% 25%;
+        --text-meta: 0 0% 50%;
+
+        --divider: 0 0% 85%;
+        --divider-strong: 0 0% 8%;
+
+        --hover-underline: 0 0% 8%;
+        --category-active: 0 72% 51%;
+    }
+
+    .dark {
+        --background: 0 0% 6%;
+        --foreground: 0 0% 95%;
+
+        --card: 0 0% 10%;
+        --card-foreground: 0 0% 95%;
+
+        --popover: 0 0% 10%;
+        --popover-foreground: 0 0% 95%;
+
+        --primary: 0 0% 95%;
+        --primary-foreground: 0 0% 8%;
+
+        --secondary: 0 0% 15%;
+        --secondary-foreground: 0 0% 95%;
+
+        --muted: 0 0% 18%;
+        --muted-foreground: 0 0% 60%;
+
+        --accent: 0 72% 55%;
+        --accent-foreground: 0 0% 100%;
+
+        --border: 0 0% 20%;
+        --input: 0 0% 20%;
+        --ring: 0 0% 95%;
+
+        --text-headline: 0 0% 95%;
+        --text-body: 0 0% 75%;
+        --text-meta: 0 0% 55%;
+
+        --divider: 0 0% 25%;
+        --divider-strong: 0 0% 95%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+        font-family: var(--font-sans);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: var(--font-serif);
+        color: hsl(var(--text-headline));
+    }
+}
+
+@layer components {
+    .editorial-link {
+        @apply relative inline-block;
+    }
+
+    .editorial-link::after {
+        content: '';
+        @apply absolute bottom-0 left-0 w-0 h-[1px] bg-foreground transition-all duration-300;
+    }
+
+    .editorial-link:hover::after {
+        @apply w-full;
+    }
+
+    .category-chip {
+        @apply cursor-pointer whitespace-nowrap transition-all duration-200;
+    }
+
+    .category-chip.active {
+        @apply font-semibold;
+        color: hsl(var(--category-active));
+    }
+
+    .article-card {
+        @apply cursor-pointer;
+    }
+
+    .article-image {
+        @apply overflow-hidden;
+    }
+
+    .article-image img {
+        @apply transition-transform duration-700 ease-out;
+    }
+
+    .article-card:hover .article-image img {
+        @apply scale-105;
+    }
+
+    .headline-primary {
+        font-family: var(--font-serif);
+        @apply text-2xl md:text-3xl lg:text-4xl font-bold leading-tight tracking-tight;
+        color: hsl(var(--text-headline));
+    }
+
+    .headline-secondary {
+        font-family: var(--font-serif);
+        @apply text-xl md:text-2xl font-bold leading-snug;
+        color: hsl(var(--text-headline));
+    }
+
+    .headline-tertiary {
+        font-family: var(--font-serif);
+        @apply text-lg font-semibold leading-snug;
+        color: hsl(var(--text-headline));
+    }
+
+    .body-text {
+        font-family: var(--font-sans);
+        @apply text-sm leading-relaxed;
+        color: hsl(var(--text-body));
+    }
+
+    .meta-text {
+        font-family: var(--font-sans);
+        @apply text-xs uppercase tracking-widest font-medium;
+        color: hsl(var(--text-meta));
+    }
+
+    .divider {
+        @apply border-t;
+        border-color: hsl(var(--divider));
+    }
+
+    .divider-strong {
+        @apply border-t;
+        border-color: hsl(var(--divider-strong));
+    }
+
+    /* Prose styles for article content */
+    .prose {
+        font-family: var(--font-sans);
+        color: hsl(var(--text-body));
+    }
+
+    .prose p {
+        @apply mb-6 leading-relaxed text-base md:text-lg;
+    }
+
+    .prose p.lead {
+        @apply text-lg md:text-xl font-medium leading-relaxed mb-8;
+        color: hsl(var(--text-headline));
+    }
+
+    .prose h2 {
+        font-family: var(--font-serif);
+        @apply text-2xl md:text-3xl font-bold mt-12 mb-6;
+        color: hsl(var(--text-headline));
+    }
+
+    .prose h3 {
+        font-family: var(--font-serif);
+        @apply text-xl md:text-2xl font-semibold mt-10 mb-4;
+        color: hsl(var(--text-headline));
+    }
+
+    .prose blockquote {
+        @apply my-8 pl-6 border-l-4 italic;
+        border-color: hsl(var(--accent));
+    }
+
+    .prose blockquote p {
+        @apply text-lg md:text-xl mb-2;
+        color: hsl(var(--text-headline));
+    }
+
+    .prose blockquote cite {
+        @apply text-sm not-italic;
+        color: hsl(var(--text-meta));
+    }
+
+    .prose ul,
+    .prose ol {
+        @apply mb-6 pl-6;
+    }
+
+    .prose li {
+        @apply mb-2;
+    }
+
+    .prose a {
+        @apply underline underline-offset-4;
+        color: hsl(var(--accent));
+    }
+
+    .prose a:hover {
+        @apply no-underline;
+    }
+}
+
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+
+/* .prose ul {
+    @apply list-disc pl-6 mb-6;
+}
+
+.prose ol {
+    @apply list-decimal pl-6 mb-6;
+}
+
+.prose li {
+    @apply mb-2;
+} */
