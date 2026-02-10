@@ -2,7 +2,6 @@
 const nextConfig = {
   reactCompiler: true,
 
-
   images: {
     remotePatterns: [
       {
@@ -14,6 +13,22 @@ const nextConfig = {
         hostname: "**",
       },
     ],
+  },
+
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "frantic.in",
+          },
+        ],
+        destination: "https://www.frantic.in/:path*",
+        permanent: true, // 301 redirect
+      },
+    ];
   },
 };
 
