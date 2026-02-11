@@ -48,7 +48,7 @@ export default function FeaturedArticle({ blog, variant = "hero" }) {
       <article>
         <Link href={href}>
           {thumbnail && (
-            <div className="relative aspect-[4/3] mb-4 rounded overflow-hidden">
+            <div className="relative aspect-[4/2] mb-4 rounded overflow-hidden">
               <Image
                 src={IMAGE_BASE + thumbnail}
                 alt={title}
@@ -72,21 +72,19 @@ export default function FeaturedArticle({ blog, variant = "hero" }) {
       <Link href={href}>
 
         {/* ================= IMAGE ================= */}
-        <div className="relative aspect-[16/10] overflow-hidden rounded-lg">
+        <div className="relative aspect-[16/9] overflow-hidden rounded-lg">
           {thumbnail && (
             <Image
               src={IMAGE_BASE + thumbnail}
               alt={title}
               fill
               priority
-              className="object-cover"
+              className="object-contain bg-black"
             />
           )}
 
-          {/* Gradient + overlay ONLY on desktop */}
           <div className="hidden sm:block absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
-          {/* Desktop title over image */}
           <div className="hidden sm:block absolute bottom-0 p-6">
             <h2 className="text-white text-2xl font-serif font-bold hover:underline underline-offset-4">
               {title}
@@ -99,6 +97,7 @@ export default function FeaturedArticle({ blog, variant = "hero" }) {
             )}
           </div>
         </div>
+
 
         {/* ================= MOBILE TITLE (below image) ================= */}
         <div className="sm:hidden mt-3">

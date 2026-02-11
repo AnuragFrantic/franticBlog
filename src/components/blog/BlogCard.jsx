@@ -59,36 +59,43 @@ export default function BlogCard({ blog, variant = "horizontal" }) {
     // ---------- HORIZONTAL (DEFAULT) ----------
     return (
         <article>
-            <Link href={href} className="flex gap-5">
-                <div className="flex-1">
+            <Link
+                href={href}
+                className="flex gap-5 items-start group"
+            >
+                {/* Content */}
+                <div className="flex-1 min-w-0">
                     {category?.name && (
-                        <span className="text-xs uppercase text-gray-500">
+                        <span className="text-xs uppercase tracking-wide text-gray-500">
                             {category.name}
                         </span>
                     )}
 
-                    <h3 className="mt-1 font-serif font-semibold hover:underline line-clamp-2">
+                    <h3 className="mt-1 font-serif font-semibold leading-snug line-clamp-2 group-hover:underline">
                         {title}
                     </h3>
 
                     {metaDescription && (
-                        <p className="text-sm text-gray-700 mt-2 line-clamp-2">
+                        <p className="text-sm text-gray-600 mt-2 line-clamp-2">
                             {metaDescription}
                         </p>
                     )}
                 </div>
 
+                {/* Thumbnail */}
                 {thumbnail && (
-                    <div className="relative w-32 h-24 shrink-0 rounded overflow-hidden">
+                    <div className="relative w-32 aspect-[4/2] shrink-0 rounded-md overflow-hidden">
                         <Image
                             src={IMAGE_BASE + thumbnail}
                             alt={title}
                             fill
-                            className="object-cover"
+                            sizes="128px"
+                            className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
                         />
                     </div>
                 )}
             </Link>
         </article>
+
     );
 }
