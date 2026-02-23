@@ -25,6 +25,7 @@ export default function BlogCard({ blog, variant = "horizontal" }) {
                     <h3 className="text-sm font-serif font-semibold leading-snug hover:underline underline-offset-4">
                         {title}
                     </h3>
+
                 </Link>
             </article>
         );
@@ -35,13 +36,14 @@ export default function BlogCard({ blog, variant = "horizontal" }) {
         return (
             <article>
                 <Link href={href} className="flex gap-4">
+
                     {thumbnail && (
                         <div className="relative w-20 h-20 shrink-0 rounded overflow-hidden">
                             <Image
                                 src={IMAGE_BASE + thumbnail}
                                 alt={title}
                                 fill
-                                className="object-cover"
+                                className="object-contain"
                             />
                         </div>
                     )}
@@ -51,6 +53,9 @@ export default function BlogCard({ blog, variant = "horizontal" }) {
                             {title}
                         </h3>
                     </div>
+
+
+
                 </Link>
             </article>
         );
