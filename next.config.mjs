@@ -6,11 +6,13 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "**",
+        hostname: "frantic.in",
+        pathname: "/uploads/**",
       },
       {
-        protocol: "http",
-        hostname: "**",
+        protocol: "https",
+        hostname: "www.frantic.in",
+        pathname: "/uploads/**",
       },
     ],
   },
