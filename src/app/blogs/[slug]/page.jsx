@@ -364,6 +364,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+export const dynamic = "force-dynamic";
+export const dynamicParams = true;
 
 import ShareButtons from "@/components/blog/ShareButton";
 import { getPostBySlug, latestPosts } from "@/controller/post.controller";
