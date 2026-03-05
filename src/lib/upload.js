@@ -37,7 +37,6 @@ export async function saveFile(file) {
 
     const uploadDir = "/home/frantic.in/public_html/public/uploads";
 
-
     await fs.mkdir(uploadDir, { recursive: true });
 
     const ext = path.extname(file.name);
